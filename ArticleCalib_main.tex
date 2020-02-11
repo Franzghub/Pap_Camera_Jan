@@ -1,0 +1,572 @@
+%% Classe du document
+\documentclass{article}
+%\documentclass[]{report} 
+
+\usepackage{preambule_all181211}
+\usepackage{siunitx}
+\graphicspath{{figures/}{../figures/}}
+
+% Title Page
+\title{Optimal detection of ultra-weak light fluxes with an EM-CCD : statistical model and experiments}
+\author{Ibtissame Khaoua, Andrey Kim, Guillaume Graciani and Francois Amblard }
+
+\begin{document}
+\maketitle
+
+%%%%%% ASBTRACT
+\begin{abstract}
+For a very wide range of purposes, one needs to detect light from an ultra-weak light source, whereby the sensitivity is physically limited by the photon-noise of the source, and the thermal activation of the detector which necessarily exceeds the blackbody radiation.
+While the signal.
+-------
+The detection of ultra-weak light sources is best achieved with quantum detectors in photon counting mode, and photon noise sets the physical limit that cannot be overcome. 
+For a stationary source, 
+
+To approach that limit, electron-multiplying charged-coupled devices (EM-CCD) represent a very good option when operated in binary photon-counting mode, and the capacity to detect an extremely faint and stationary flux simply increases with the number of detected photon.  
+For time-varying light fluxes however, 
+
+is a major challenge, because of the intrinsic photon noise of virtually all light source.  
+
+. Not only  
+The detection of non-stationary The present work deals with the detection of ultra-weak light emitted by extended 2D or 3D objects, using an EMCCD camera in the binary photon counting mode, and assuming a uniform flux of photo-electrons on the detector.
+To discriminate this flux signal from all noise sources, we provide an extensive characterization of the detector combined with a statistical model of the signal-to-noise ratio as a function of exposure time.
+We find optimal detection conditions, in which steady-state fluxes as low as typically 1$photon.sec^{-1} cm^{-2}$ can be detected with a single image.
+In these optimal conditions, experiments also show that variations of the temperature of the black-body radiation can be detected in the range of 1*C at ambiant temperature.
+Finally, for the case non-stationary fluxes, we describe how flux fluctuations are statistically filtered at both short and long times, and our model predicts the optimal time-scale to best estimate these fluctuations.
+--------
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% INTRO
+\section*{Introduction}
+
+****put some more refs. 
+
+The detection of ultra-weak light sources and their possible variations with time is a challenge that represents a serious road block when investigating various phenomena across a wide range of fields, including weak bioluminescence, optical relaxation in various materials, delayed chemiluminescence, weak luminescence in general, or astronomy.
+This challenge is also a central one for the development of  imaging or detection methods for biomedical applications, photo-chemical detection, and for the countless applications of luminescence across all scales. 
+In the past 30 years, considerable efforts have been successfully devoted to best detect single photons emitted by discrete sub-wavelength size objects such as single molecules, or to localize such point-like emitters when sparsely distributed over an object field.
+This has led to a huge diversity of methods aimed at single photon detection and imaging [refref Seitz book].
+
+In many situations however, when single photons are detected, it is either impossible or physically meaningless to individually assign them to distinct "discernable" emitters. 
+This situation prevails for instance for a liquid that contains a weakly emitting solute, or for the surface of a solid covered with a continuous density of weak emitters. 
+In such cases, the physically relevant quantity to be assessed is the rate of photon emission per unit volume or unit surface of the sample.
+Consequently, the detection limit is set by the comparison, on the detector, between the rate of photons it receives per unit surface and the detector noise.
+
+In this context, the challenge of detecting very faint photon-number fluxes is best solved by using an electron-multiplying charge-coupled device camera (EM-CCD).
+Schematically, the electron-multiplication gain provides the so-called sub-electron readout noise necessary to detect single photons despite noisy output amplifiers.
+However, electron-multiplication is a stochastic phenomena and comes with a gain noise characterized by an excess noise factor (ENF) that typically reaches $\sqrt{2}$ at high gains. 
+This is equivalent to a 50\% reduction of the effective quantum efficiency.
+This problem is completely solved by counting single photons using a binary discrimination.
+Unfortunately, binary single photon counting (PC) mode leads to a loss of information when two or more photons are counted as one because they arrive during the same exposure time.
+As a consequence, the signal-to-noise ratio (SNR) exhibits a nonlinear dependence the exposure time, due to the combination of the above binary saturation effect with the other two main sources of noise, i.e. the clock-induced charge noise ($p_{cic}$) and the dark current ($I_{d}$).
+
+The detection \textcolor{blue}{of} the time-variations of the intensity of a light source raises here a difficult problem. 
+Indeed, due to detector saturation, the SNR peaks for a characteristic exposure time $\tau_{c}$, and the corresponding critical sampling frequency $f_{c}=\tau_{c}^{-1}$ somehow acts as the corner frequency of a kind of low-pass statistical filter.
+Indeed, while low frequencies signal variations ($\leq f_{c}/2$) are optimally detected and even oversampled at the SNR peak ($\tau_{c}$), 
+faster variations ($\geq f_{c}/2$) are obviously missed if the same exposure time is used.
+Unfortunately, fast variations can only be detected using shorter time intervals that necessarily come with a reduced SNR.
+As a consequence, if a faint flux is to be detected with no prior knowledge of it being constant or not, sampling at $\tau_{c}$ is no longer the theoretical optimum. 
+A statistical model is then required to determine the optimal exposure time needed to best detect the variations of the signal without compromising the sensitivity to detect its time-average. 
+
+In the present work, we report on the experimental design of an EM-CCD based set-up optimized for the detection of ultra-weak light fluxes in the extended visible domain ($\SI{0.4}{\micro\meter} \leq \lambda \leq \SI{1}{\micro\meter}$). 
+Thanks to an in-depth statistical analysis of the detector and its noise spectrum, we introduce a characteristic sampling time $\tau_{0}$ that maximize the time-density of information the detector can extract from the signal.
+In such optimal conditions, the "noise equivalent photon flux" (NEF) typically represents 1\% of the dark current, 
+
+**** verifier nombres
+
+i.e. $7 \hspace{2} \mathrm{photon}\hspace{2} \mathrm{s}^{-1} \mathrm{cm}^{-2}$,
+and the photon-number detectivity amounts 
+$\Tilde{D} = 0.019 \hspace{2} \mathrm{photon}^{-1} \mathrm{s}^{1/2} \mathrm{cm}$.
+Fluxes can be assessed over a dynamic range of 2.5 decades.
+Because of this extreme sensitivity, our set-up is unexpectedly sensitive to blackbody radiation at ambiant temperature, and can serve as a thermal camera with a "noise equivalent temperature difference" (NETD) of $\SI{1.5}{\celsius}$ at $\SI{20}{\celsius}$, and $\SI{0.2}{\celsius}$ at $\SI{37}{\celsius}$.
+This work should help design highly sensitive experiments to explore dynamic phenomena involving ultra-weak luminescence.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% MODEL
+\section*{Simple statistical model of photon counting with an EM-CCD}
+
+Let's consider the basic operation of an EM-CCD pixel in the photon-counting mode exposed to a constant light source, that receives photons and generates primary photon-electrons at the rate $I_{s}$ with unit quantum efficiency. 
+When exposed during a time interval $\tau$, electrons are produced and multiplied, and then delivered into an amplifier. 
+The amplifier output undergoes a threshold-discrimination that generates a single bit, $0$ or $1$, that will be represented by the Bernouilli random variable $X$.
+Pixel noise in that context refers to the mismatch between the value that \textcolor{blue}{the} bit takes during one measurement, and the number of primary photo-electrons generated during $\tau$.
+Because of the pixel gain, the number of electrons entering the amplifier largely exceeds the amplifier readout noise, that can \textcolor{blue}{therefore} be safely ignored.
+\textcolor{blue}{As a consequence}, the pixel noise is dominated by two contributions: the clock-induced charges and the dark-current, which are \textcolor{blue}{also} unfortunately amplified by the pixel gain.
+\textcolor{blue}{(definition of CIC and dark?)} The former can be represented by the Bernouilli random variable $X_{cic}$($=0,1$), with the probability $p_{cic}=1-q_{cic}$ to generate a charge that does not depend on $\tau$.
+The latter is described by the rate $I_{d}$ at which dark electrons are generated, and the effect of the dark current can be considered as a Poisson random variable, with parameter $\lambda_{d}=I_{d} \tau$.
+Meanwhile, the effect of the light source can also be represented by a Poisson process, with parameter $\lambda_{s}=I_{s} \tau$.
+Both Poisson processes add up as a Poisson process, with parameter $\lambda = \lambda_{s} + \lambda_{d}$.
+Assuming that signal photons, dark current and CIC charges are produced independently, one can simply write the probability of the output bit to be zero as $e^{-\lambda}(1-p_{cic})$.
+The output pixel bit $X$ is therefore caracterized by the Bernouilli parameter $p_{X} = P(X=1)$ given by: 
+\begin{equation}
+\label{eq:Bernouilli_pixel}
+p_{X} = 1 - e^{-\lambda_{s}} e^{-\lambda_{d}} (1-p_{cic})
+\end{equation}
+The sensitivity of the detection process therefore boils down to statistically resolve the random variable $X$=$X_s$ assessed in the presence of the light source $I_{s}$, from the random variable $X$=$X_0$ measured in the absence of external source in the best possible dark environment ($I_{s}=0$).
+One must therefore resolve their difference from zero which reads,
+\begin{equation}
+\Delta(I_{s},\tau)   = \bar{X_s}-\bar{X_0} = p_{X_s}-p_{X_0}= [1-e^{-\lambda_{s}}] e^{-\lambda_{d}} q_{cic}
+\end{equation}
+and can be approximated as $\Delta(I_{s},\tau) \approx I_{s} \tau e^{-I_{d} \tau}$ for faint signals, i.e. $\lambda_{s} \ll 1$.
+This response is linear in $I_{s}$, but not in $\tau$. 
+Interestingly, the difference peaks for $\lambda_{d} = \tau I_{d} = 1$, close to the saturation due to the dark current, and the peak value can be approximated by $I_{s}/e I_{d}$.
+The noise that limits the detection comes from the variance of $X_0$ and $X_{s}$, 
+\begin{equation}
+\sigma^2_{\Delta(I_{s},\tau)} = \sigma^2_{X_s} + \sigma^2_{X_0} = p_{X_s}(1-p_{X_s}) + p_{X_0}(1-p_{X_0})  
+\end{equation}
+and the signal-to-noise ratio is:
+\begin{equation}
+\label{eq:SNR_main}
+SNR = \lambda_{s} q_{cic}^{-1/2} e^{-\lambda_{d}/2} 
+/\sqrt{ 1 + e^{-\lambda_{s}} - e^{-\lambda_{d}} (1 + q_{cic} e^{-2 \lambda_{s}})} 
+\end{equation}
+
+For short enough exposure times compared to saturation times, i.e. $\lambda_{d}$ $\ll 1$ and $\lambda_{s}$ $\ll 1$, the following approximation is obtained,
+\begin{equation}
+SNR \approx \lambda_{s} /\sqrt{p_{cic} + 2\lambda_{d} + \lambda_{s})}
+    \approx \tau I_{s}   / \sqrt{p_{cic} + \tau (2 I_{d} + I_{s})}
+\end{equation}
+From this equation that describes the SNR before pixel saturation, the SNR increases with $\tau$, but two regimes can be distinguished, that are determined by the ratio of $p_{cic}$ to $\tau (2 I_{d} + I_{s})$, i.e. by the value of $\tau$ relative to the time-scale 
+$\tau_{c/d} = p_{cic} /I_{d} $.
+For very short exposure times such that 
+$\tau \ll \tau_{c/d}$, 
+the detector noise is dominated by the fixed contribution of the CIC, and the SNR goes linearly with $\tau$ as
+\begin{equation}
+    SNR=\tau I_{s} /\sqrt{p_{cic}}
+\end{equation}
+At longer but non-saturating times $\tau_{c/i} \gg \tau $, the dark current dominates the detector noise and the SNR goes as 
+\begin{equation}
+    SNR= \sqrt{\tau I_{s}} /\sqrt{ 1 + 2 I_{d}/I_{s}}
+\end{equation}
+
+At much longer times, saturation occurs due the dark current or the light signal, depending on which one dominates, as determined by the ratio $\epsilon=I_{s}/I_{d}$.
+For very faint sources of interest here, i.e. when $\epsilon \ll 1$, the SNR given by \eqref{eq:SNR_main} can easily be approximated by 
+\begin{equation}
+    SNR \approx \tau I_{s} e^{-\tau I_{d}/2} 
+\end{equation}
+and the SNR decays as $t e^{-t}$ for exposure times larger than $\tau_{d} = 1/I_{d} $.
+For light sources that dominate the dark current, the SNR decays for shorter exposure times, $\tau_{d} = 1/I_{s} $.
+The overall behavior of the SNR \textcolor{blue}{is} described below from numerical simulations.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+To model the detection of a supposedly uniform light \textcolor{blue}{irradiance} over a large number $N_T$ of pixels indexed by their line and column position $(ij)$, we simply add the corresponding Bernouilli variables $X_{ij}$. 
+Two random variables are constructed,  
+$N1_{s} = \sum_{ij} X_{s,ij}$ and $N1_d = \sum_{ij} X_{d,ij}$ 
+to represent the number of binary output counts respectively in the presence and the absence of an external light source.
+As it is done above for single pixel, we seek to resolve the difference between $N1_s$ and $N1_d$, and the relevant signal writes: \textcolor{blue}{!!! MISSING EQUATION !!!}
+%\begin{equation}
+%\Delta N1(I_s,\tau)   = %\overline{N1_s}-\overline{N1_d = \sum_{ij}} %\Delta_{ij}(I_s,\tau)
+%\end{equation}
+
+In the present work, it is assumed that the light source to be detected generates a uniform flux leading to the same Poisson parameter $\lambda_{s} \tau$ over all of the $N_T$ pixels collected in these two variables.
+For the CIC noise and the dark current, we consider instead that each pixel possibly has a diffent value $p_{cic,ij}$ and $I_{d,ij}$, to include to pixel heterogeneity in the model.
+Outlier pixels could indeed degrade the sensitivity, either because of their excessive dark current or CIC, and it is important to know their impact on the detector sensitivity.
+The above statistical model is used in this paper, to report on the properties of our EM-CCD, which are then used to study the signal-to-noise ratio and determine the optimal detection conditions.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% RESULTS
+\section*{Results}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SINGLE PIXEL caract
+\subsection*{Single-pixel characterization and heterogeneity of the EM-CCD}
+
+To first characterize the EM-CCD, the detector was set in the darkest possible environment, and large series of images were taken to sample the response for a range of exposure times, with up to $10^4$ sample for short exposure times.
+For each pixel $ij$, a sample was obtained for the random variable $X_{0,ij}(\tau)$, and the sample mean was linearly fitted using equation \eqref{eq:Bernouilli_pixel} with $\lambda_{s}=0$.
+Estimates of the dark current and CIC contribution provided us with two sets of values for the whole detector \{$I_{d,ij}$\} and \{${p_{cic,ij}}$\} shown on figure (refref*******). 
+The average response over the detector, $<p_{X_{0,ij}}>(\tau)$, assumes the expected shape, with a lower plateau set by the CIC and a linear increases driven by the rate of dark current, with average values of $1.7 10^{-3} s^{-1}$ and $1.6 10^{-4} s^{-1}$ respectively (refref fig***1a).
+Meanwhile, each pixel sample comes with a variance, and those variances averaged over the sample exhibited \textcolor{blue}{a} similar behavior  (refref fig***1a).
+The heterogeneity of the detector can be assessed from the joint distribution of $ p_{cic,ij} $ and ${I_{d,ij}}$ (refref fig***1b biplot, remove b) and the probability densities (refref fig***1e).
+No correlation was found between these two characteristics, and the dispersion over the camera, as reflected by the coefficient of variation, typically amount 50\% for the dark count rates, and 30\% \textcolor{blue}{????}.
+Part of this dispersion is due to outliers pixels, which typically exhibit a $10^1$ larger excess or default of the dark count rate.  
+These abnormal pixel represent $0.1\%$ of the detector surface, as shown by the cumulative distribution functions (refref fig***1c-d).  
+
+In addition, the heterogeneity of pixels clearly comes with a spatial structure (refref ****supp fig1 and fig2), with a strong hererogeneity.
+The contribution of the CIC process exhibits heterogeneity between pixel columns with a $10\%$ typical variation of $p_{cic}$.
+In addition, \textcolor{blue}{there is} a detector-wide fuzzy gradient with an excess of dark count rate \textcolor{blue}{on} top of the detector relative to its bottom.
+One of the basic assumption of our statistical model is that the counts generated by the CIC and dark current processes can be represented, for each pixel, as a Bernouilli random variable $X_{0,ij}(\tau)$.
+For the rest of this paper, we should question the stability of each pixel, i.e. if it behaves as a stationary Bernouilli process with no correlation between successive frames. 
+This is the case, has shown by the exponential distribution of the average of the time \textcolor{blue}{interval} between the counts individually delivered by each pixel (refref ****supp fig3).
+This temporal stability is lost when considering all pixels, as will be observed later, probably because of correlations between pixels. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% SNR and sampling time
+\subsection*{Signal-to-noise ratio and optimal sampling time}
+
+To best detect very faint light fluxes and determine the camera sensivity, the experimental knowledge of the values \{$I_{d,ij}$\} and \{${p_{cic,ij}}$\} was combined with the SNR model.
+For different values of the signal rate $I_{s}$ relative to the dark count rate $I_{d}$, with  $\epsilon =I_{s}/I_{d}$, we computed numerically the mean of the total count $\overline{N1_s} = \sum_{ij} \overline{X_{s,ij}}$ (refref ****fig5a), its variance $\sigma^2_{N1_s} = \sum_{ij} \sigma^2_{X_{s,ij}}$ (refref ****fig5b), and the ratio $\overline{\Delta N1_s}/\sqrt{\sigma^2_{N1_s}+\sigma^2_{N0_s}}$ that represents the SNR (refref ****fig6). 
+Given the minimal exposure time of the camera ($\tau_{min}=\SI{0.03}{\sec}$), the dynamic range of detection depends on $\tau$ but never exceeds $1/p_{cic} \approx 600$ \textcolor{blue}{and} is much reduced in conditions of maximal sensitivity as will be seen below.
+In the absence of external light, i.e. when $\epsilon=0$, the experimental value of the average response fits well with the value of $\overline{N0_s}$ given by the model (refref*****fig 5a), but the experimental noise exceeds the prediction of the model for large exposure times.
+This observation is accounted for by the non-stationary behavior of the whole detector which is not seen for individual pixel, as evidenced later.
+
+The SNR given by numerical simulation (refref ****fig6) essentially reflects how sensitively a light flux can be assessed from a single sample of the difference with and without the flux, i.e. $\Delta N1 = N1_s - N1_0 $. \textcolor{blue}{!!! indexes  !!!}
+As expected from the theoretical analysis, for small enough fluxes relative to the dark current, $\epsilon<1$, the linear regime $SNR \propto \tau$ due to the constant CIC noise is followed by the square-root regime $SNR \propto \sqrt{\tau}$ due to the dark current, and saturation occurs at $\tau\approx 1/I_{d}$ (refref ****fig6a-b).
+This typical behavior even extends for $\epsilon<1$, but it crosses then over to an unexpected feature, namely a sharp SNR peak, which can be explain by the rapid collapse of the noise variance $ \sigma^2_{N1_s}+\sigma^2_{N0_s}$ due to signal saturation.
+These simulations where executed using the complete knowledge of \{$I_{d,ij}$\} and \{${p_{cic,ij}}$\}, but virtually similar results were obtained by considering an homogeneous model in which all pixel are considered to be identical to the average pixel, with $I_d=<I_{d,ij}>$ and $p_cic=<p_{cic,ij}>$ (refref****supp fig4).
+
+Qualitatively, these numerical observations of the SNR can be analyzed as follows.
+Let's consider two time-scales $\tau_a$ and  $\tau_b = n \tau_a > \tau_a$, and the photons arriving on the detector during the largest time interval $\tau = \tau_b$. 
+From the point of view of the signal, the same signal will be counted, wether these photons are collected as one sample over $\tau_b$, or by adding $n$ samples with an exposure time $\tau_a$.
+If $SNR \propto \sqrt{\tau}$, then $\sigma^2(\tau) \propto \tau$, and $\sigma^2(\tau_b)= n \sigma^2(\tau_a)$, which means that the variance is the same for a single sample $\tau_b$ and the repetition of $n$ samples with $\tau_a$.
+In other words, both the signal and the variance remain unchanged by the fragmentation, and there is no loss of information when the SNR scales as $\sqrt{\tau}$.
+If $SNR \propto \tau$ instead, $\sigma^2(\tau)$ is a constant that does not depend on $\tau$, and the SNR associated with a single sample $\tau_b$ is $\sqrt{n}$ times larger than for the repetition of $n$ samples with $\tau_a$.
+Therefore, if a given exposure time $\tau$ is fragmented into a succession of multiple shorter intervals, there is no loss of information if the SNR scales as $\sqrt{\tau}$, whereas fragmented sampling degrades the SNR as $\sqrt{n}$.
+
+Optimal sampling to detect a faint and possibly variable light source should therefore be designed as follows. 
+The general strategy to choose the sampling time $\tau_{max}$ that provides the highest SNR is obviously valid for a stationary light source, but it makes it impossible to detect signal variations faster than $\tau_{max}$.
+To detect faster variation, the fragmentation $\tau_{max}$ into shorter sampling time is needed but it can lead to information loss.
+The best option is therefore to choose the shortest time-scale $\tau_{opt}$, for which $SNR \propto \sqrt{\tau}$.
+This shortest time-scale is the one for which the information density delivered by the detector is maximal, i.e. the one that corresponds to the smallest value of the noise equivalent power (NEP).
+The concept of NEP designates the input power that would generate in a zero-noise detector, the same output as the actual detector injected with a zero input.
+
+
+Practically, to find this sampling optimum, the logarithmic derivative of the $SNR$ was computed as $\partial \ln({SNR})/\partial( \ln{\tau})$ (refref****fig6c), and the optimal sampling time \textcolor{blue}{$\tau_{opt}$} could be computed as a function of the intensity of the light source (refref****fig6d).
+The experimental dataset used for simulations suggested a value $\tau_{opt}\approx \SI{500}{\sec}$.
+For very faint fluxes, we find that the optimal sampling time is $20$x shorter than the time-scale of the SNR peak, which means that optimal sampling that one can detect $20$x faster variations with no information loss.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Thermal radiation efffects and cosmic rays
+\subsection*{Thermal radiation effects and cosmic rays}
+
+Thermal radiation has remained a mystery until Max Planck explained it in 1905 with a heuristic argument that served a the foundation of quantum mechanics. 
+Physics tells us that virtually all objects universally exchange so-called thermal photons with their environment, unless they are at zero temperature, $\SI{0}{\kelvin}$. 
+In the ideal case of a black body, i.e. objects that perfectly absorb light, the Planck's law of Blackbody radiation gives the spectral distribution of the radiance, from which we know that usual objects at ambiant temperature generate no visible light.
+They rather emit in the infrared region with an energy peak around the wavelength of $\SI{10}{\micro\meter}$.
+Because of the extremely steep decay of the energy carried by thermal radiation at wavelengths shorter than the peak, also called the "UV catastrophe", thermal light is never considered when dealing with visible cameras at ambiant temperature.
+This illustrated on figure (refref***fig7a), which indicates that the spectral radiance descreases by a factor $10^{23}$ between $\SI{800}{\nano\meter}$ and $\SI{400}{\nano\meter}$. 
+This is not what we found. 
+
+To assess the flux of thermal photons received by the camera, we assumed that it was exposed to ideal blackbody radiators.
+This is a very valid assumption, because the camera was practically kept in the dark with dedicated blackbody materials. \textcolor{blue}{pas tres clair} \textcolor{blue}{This is a very valid assumption, because the camera was practically kept in the dark using dedicated blackbody materials ??}
+Practically, the spectral density of the radiation was multiplied by the quantum efficiency (refref****fig7a) to give the spectral distribution that corresponds to the photons detected by the camera (refref****fig7b).
+Obviously, a thermal radiation peak in the near-infrared region around $\SI{1050}{\nano\meter}$ is in principle "visible" by the camera, an contributions at shorter wavelengths are relatively negligible.
+We also \textcolor{blue}{found} a strong increase of detected light with temperature, with a factor $10$x between $\SI{15}{\celsius}$ and $\SI{30}{\celsius}$, and relatively more photons detected at shorter wavelength.
+We then simulated the number of counts detected by the whole camera, when integrating of the spectrum.
+
+Surprisingly, despite the very low quantum efficiency ($\approx 1\%$) at $\SI{1050}{\nano\meter}$, the thermal signal exceeds the detector noise, when the radiation temperature increases (refref****fig7c).
+A very steep dependence is observed with temperature, as expected from the extreme nonlinearity of spectrum on its short-wavelength (refref*****paper-NatCom Guillaume).
+The result is that the camera is sensitive to variations of the temperature of the objects it receives the light from, even when these objects are perfectly black.
+This sensitivity is classically expressed by the minimal temperature increase needed for the radiation increase to exceed the noise.
+This so-called noise equivalent temperature diffence, NETD, was found to amount $\SI{1.5}{\celsius}$ at $\SI{20}{\celsius}$, and $\SI{0.2}{\celsius}$ at $\SI{37}{\celsius}$ (refref****sup fig6).
+These numerical results strongly suggest that temperature should be tighly controlled for the stable detection of faint visible light.
+
+One last matter of interest here is the issue of cosmic rays, \textcolor{blue}{which are known} to impact most light detectors and generate characteristic multipixel \textcolor{blue}{patterns} on single frame (refref***paper cosmic rays methods).
+Thanks to image processing routines, the impacts of cosmic rays could be removed, and we found that the number of counts they contribute is equivalent to a \textcolor{blue}{photonic irradiance} that typically amounts $4.1$ electrons/s/pixel, which represents $5\%$ (refref***** verifier) of the dark current contribution (refref****supp fig6).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Experimental strategy and detection sensitivity
+\subsection*{Experimental strategy and detection sensitivity}
+
+The above determination of the optimal sampling strategy implicitly involved two key assumptions, namely that each pixel behaves as stationary Bernouilli process with no internal correlation, and that there is no correlation between pixels.
+The obvious consequence of these assumptions is that the total noise count $N1_d$ assessed over a collection of $N_T$ pixels can also be considered as a stationary proces with no internal correlation.
+This is not \textcolor{blue}{what} we found when repeatedly sampling $N1_d$ with $\tau=1$ and $\tau=100s$ through long time-series.
+Statistical significant fluctuations where indeed observed despite a tight temperature control, and the variance assessed from entire time-series generally exceeds the variance assessed on shorter periods of time (refref****supp.fig8 and fig9).
+Over very long experiments as well, a drift of the noise count was occasionally observed  (50 hours or more (refref****fig8)). 
+In other words, the total count cannot be considered as stationary random variable, and $N1_d$ must be seen as a doubly stochastic random variable with a local mean $\overline{N1_s}(t)$ that undergo idiosyncratic variations.
+This could arise from many causes that can hardly be mitigated beyond a proper temperature stabilization, and the best solution is to define and assess the signal $\Delta N1_{\tau}(t)$ as a function of time as the local difference between two time-adjacent samples of $N1_{s,\tau}$ and $N1_{d,\tau}$, in the present and the absence of the signal source.
+
+\begin{equation}
+\Delta N1_{s,\tau}(t)   
+= N1_{s,\tau}(t) - N1_{d,\tau}(t \pm \tau)
+\end{equation}
+In this classical scenario based on adjacent "signal - background" substraction, the relevant noise level is given by the dispersion $\sigma_{\Delta N1_d}$ of the $\Delta N1_{s,\tau}(t)$ sampled in the absence of external signal, i.e.
+mean square difference between adjacent samples of the noise count, $N1_{d,\tau}(t)$ and $N1_{d,\tau}(t+\tau)$. This substraction is simply implemented by alternating samples with the camera shutter open and closed.
+
+An experiment was designed to measure the substraction noise level of the camera and its response to extremely faint light fluxes, typically \textcolor{blue}{for photonic irradiances} from $4$ to $4000$ \textcolor{blue}{photons/cm$^2$/s}.
+The \textcolor{blue}{photonic irradiance} was considered uniform over a disk of $142.10^3$ pixels, which represents $\SI{0.35}{\square\cm}$ (refref***supp fig9).
+The camera was operated at $\SI{-74}{\celsius}$, with a measured dark current $p_{I_d} = 1.1 \hspace{2} 10^{-3} \text{s}^{-1}$, a clock-induced charge noise of  $p_{CIC} =1.7.{10^{-3}}$, leading to an optimal sampling time $\tau_{opt}= \SI{160}{\sec}$.
+The differential noise level of the camera, $\sigma_{\Delta N1_d}$, was found to be very stable over tens of hours, with a standard deviation $\sigma_{\Delta N1_d} = 630$ (refref****fig8).
+In comparison, the noise count ($N1_d(t)$) is obviously non-stationary, with a much larger standard deviation.
+We should note here that the dark counts, which dominates $N1_d(t)$ and typically amounts $25000$ over $\tau=160{\sec}$, should lead to $\Delta N1_d =\sqrt{2 I_d \tau_{opt} N_T}= \sqrt{2.25000}\approx 223$.
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Bizarre de trouver 460 alors qu'on devrait trouver en principe plutot 223  \par
+\textcolor{red}{
+Expected = $\sigma_{\Delta N1_d} = \sqrt{2 I_d \tau_{opt} N_T}$
+Expected = $\sigma_{\Delta N1_d} = \sqrt{2 I_d \tau_{opt} N_T}$
+Expected = $\sigma_{\Delta N1_d} = \sqrt{2 I_d \tau_{opt} N_T}$
+}
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\textcolor{red}{
+At SNR = 1, we expect that 
+$\epsilon = \sigma_{\Delta N1_d} /(I_d \tau_{opt} N_T) = \sqrt{2} /\sqrt{I_d \tau_{opt} N_T} = \sqrt{2/25000} = 8.9.10^{-3}$ ce qui donne la moitie de notre valueur trouvee pour $\epsilon 18.10^{-3}$ !!      \textcolor{red}{>>>> on retrouve le facteur deux en excess sur notre epsillo SNR=1} 
+}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+When increased light fluxes $\phi_{sig}$ are injected, the observed count number increases linearly, and the measured output variance is strongy dominated by the detector variance $\sigma_{\Delta N1_d}^2$.
+Experimental error bars represent the standard deviation for each sample, which was found to match $\sigma_{\Delta N1_d}=630$.
+Assuming a quantum yield closed to unity ($QE=0.9$), we found SNR=1 for $\phi_{sig} = 9$ \textcolor{blue}{photons/cm$^2$/s}, which is close to the theoretical expectation given by $\sqrt{2/I_d \tau_{opt} N_T}$.
+This is the minimal detectable flux in our operation conditions (160 s and 142000 pixels), while the dark contribution corresponds to $\phi_{dark} =500$ \textcolor{blue}{photons/cm$^2$/s}.
+In other words, the detection limit corresponds to 1.8\% of the dark current surface density.
+For such low fluxes, the noise is dominated by the constant $\sigma_{\Delta N1_d}$, and the SNR goes linearly with $\phi_{sig}$ as
+\begin{equation}
+    SNR =  54 \hspace{3} \phi_{sig}/\phi_{dark}
+\end{equation}
+This linear regime holds as long as the signal shot noise does not exceed the detector noise.
+However, this occurs for a flux that is typically twice the flux that saturates the detector.
+Therefore, the detector practically works with constant noise up to saturation.
+Half saturation, is reached with $SNR=90$ for $\phi_{sig}/\phi_{dark}=1.84$, which corresponds to a dynamic range of 2 decades (refref***table 1).
+
+
+\begin{center}
+ \begin{tabular}{|c|c|c|c|} 
+ \hline
+ \epsilon   & signal  & SNR & \phi_{sig}        \\ [0.5ex] 
+            & counts  &     & ph/cm$^2$s   \\ [0.5ex] 
+ \hline
+ 1.8        & 46000     & 90   & 920  \\
+ \hline
+ 1          & 25000     & 51    & 500   \\
+ \hline
+ 0.1        & 2500      & 5.4   & 50    \\ [1ex] 
+ \hline
+ 0.018      & 460       & 1     & 9.2 \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Discussion
+\subsection*{Discussion}
+
+The statistical model and the experimental analysis presented here support the notion that steady-state light fluxes can be detected with and EM-CCD well below the flux that corresponds to the surface density of the dark current.
+The method is based on operating an EM-CCD in photon-counting \textcolor{blue}{mode}, whereby the SNR assumes a complex dependence on the exposure time and the signal rate. 
+In order to optimize the detection of possible variations of the signal flux, we define an optimal exposure time $\tau_{opt}$ located at the crossing between the short-time regime dominated by the constant detector noise due to clock-induced-charges, and the long-time regime which \textcolor{blue}{is} dominated by the growing number of dark count noise.
+This optimal time is smaller than the time for which the signal-to-noise ratio reaches its maximum, and faster variations can therefore be measured. 
+It corresponds to the shortest possible time for which no information is lost compared to operating at maximum SNR.
+An extended proportion of the camera was used (54\%, $N_T=142000$ pixels), but the SNR can easily be infered for other values of $N_T$ since it scales as $\sqrt{N_T}$.
+We should also note that the minimal detectable count rate, defined by $SNR=1$, is given by $\sqrt{2 I_d \tau_{opt} N_T}$, which indicates that the sensitivity remains limited by the dark current contribution.
+\textcolor{blue}{Penser a ajouter la comparaison bruit PMT}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Methods
+\section*{Methods}
+
+\subsection*{EM-CCD camera}
+
+Two EM-CCD model HN\"{u}512 cameras from N\"{u}v\"{u} (Montreal, Canada) were used, with $512$x$512$ square pixels ($16$x$\SI{16}{\micro\meter\squared}$). 
+We operated in photon counting mode, with the pixel gain set at 3000, and redout frequency at $10$MHz. 
+Experiments were initially carried out at $-85^\circ C$, but then at $-65^\circ C$ (***************) due to unstable cooling.
+The nominal specifications of the detector are: $0.0002$ count/pixel/s from dark current ($I_{d}$), $0.001$ count/pixel/frame clock induced charge ($p_{cic}$), and $0.8 \leq QE \leq 0.9$ quantum efficiency for $0.4 \mu \leq \lambda \leq 0.75 \mu$.
+The cameras were controlled using a home made Python environment, using the control library provided by N\"{u}v\"{u}.
+
+\subsection*{Experimental calibration}
+Laser wavelength, shutter, filters, polarizers, ,...
+Disk size, Repetition of sample, 
+
+
+
+\subsection*{Dark chamber}
+All experiments were carried out by placing the camera inside a custom-made metal enclosure ($0.8$x$0.8$x$\SI{0.8}{\cubic\meter}$), with inside walls painted with black anti-reflexion paint and covered as much as possible with a black fabric (ref ********). 
+The enclosure itself was located in custom designed room, for maximal light insulation.
+Specific ultra-absorbing sheets were used when need (Metal Velvet, Aktar, Israel), together with black optical cardboard (Thorlabs, USA).  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+==========================================
+
+==========================================
+
+==========================================
+
+==========================================
+
+==========================================
+
+==========================================
+
+
+%% Fast SNR simulation
+\subsection{Fast SNR simulation}
+
+Taking into account the 513$\times$512 pixels into a sum of Bernoulli random variable with their own parameter is time consuming, and for the single pixel characterisation, and for the simulation processing. 
+If a subtle knowledge of the camera pixels is not necessary, estimating the SNR by a model is swiftly done by considering the detector homogeneous, with the same CIC and Id parameter for all pixels. The parameters are extracted by doing a simple linear regression ($\tilde{f_{counts}} = \tilde{f_{CIC}} + \tilde{f_{Id}}*\tau$) out of saturation on the global detector response on complete dark conditions (see \ref{fig:PixByPix:A}).\par
+The difference between both homogeneous model (all pixels's noises identical), and the heterogeneous model (all pixels's noises singular), is the variance between pixels on one frame, $\sigma^2_{ij}$. Surprisingly enough, this $\sigma^2_{ij}$ is subtracted to the N1 variance in the heterogeneous model case, which leads to a better SNR (\ref{fig:SNRTau:HeteroHomo}). 
+It is easily demonstrated by :   \par
+
+\textcolor{blue}{demonstration de la difference}.\par
+\medskip
+However, the difference is small enough (from 1 to 7\%) for neglecting it for the sake of simplicity. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Cosmic rays
+\subsection{Cosmic rays}
+
+Cosmic rays (CR) are particles of different kinds, carrying a wide range of energies. They arrive from the cosmos and trigger multipixel response patterns on the detector (see \ref{fig:CR:A}). 
+Because these pixel clusters patterns bear some reproducible features (a cluster of connected pixels followed by a "horizontal tail"), we wrote a program to detect a given number of connected pixels, this cut off number of connected pixels being determined by a negligible probability ($<10^{-6}$) to happen randomly for a given time of exposure. The frequency of events (ie. cluster of connected pixels), as function of the number of pixels in the cluster, was determined by a Monte Carlo simulation, on an arbitrary large enough detector to achieve sufficient statistic, using our model to produce the noise pattern, for different time of exposure. This program create a detector equivalent logical matrix attributing "ones" to the pixels belonging to a cluster's size bigger than the determined cut off. After indexing the concerned pixels, we substitute them by random values drawn from the appropriate Bernoulli distribution.
+Because the detection of these clusters relies on the recognition of connected pixels, it becomes more difficult to tell them from clusters generated by signal photons when the density of positive pixels is too high, e.g. when the time of exposure exceeds 2000 seconds. 
+However, we could assess the contribution of cosmic rays and we found that, in photon counting mode, it amounts to $4,1.10^{-6}$ electrons/sec/pixels, that is $1/20$ of the dark current (figures \ref{fig:CR:B} and  \ref{fig:CR:C}.) \par \textcolor{blue}{!! VERIFIER LA VALEUR DE $4,1.10^{-6}$ !!}
+
+Importantly, this equivalence with an effective photon rate determined in binary mode (photon counting) is physically meaningless, because it does not reflect the actual strength of cosmic rays which saturate analog detectors.
+Digital treatment makes these high energy perturbations look like regular visible photons, and this can be considered as an additional advantage of using a binary mode to detect low light fluxes. \par
+We consider that the impact of the cosmic ray on our model is negligible, as far as the concerned time of exposure are small enough that their removal doesn't impact significantly the statistic of the wide detector response.\par
+%
+	%\input{figures/articleCalib_Fig5_CR}
+
+
+%% BBR
+\subsection{Black Body Radiation}
+
+Given the SNR model a rightful question emerged : what is the sensitivity of our camera to thermal radiation ? Indeed, the signal of interest being so weak, it is fundamental to be able to distinguish it from other kind of radiation and fluctuation linked to temperature. This is even more crucial given that we aim for biological sample that are kept at higher temperature (37\textcolor{blue}{$^o$C}) than room temperature.\par
+%During extensive measures trying to uncover the origin of N1 outliers, we noticed significant fluctuations happening in the background noise producing a double stochasticity effect.
+%We went further by measuring directly the thermal flux with the help of a Black Body and we realised that we were sensitive to changes of temperature (see figure \ref{fig:BBR:exp_100s_600s}). 
+
+Therefore, we modelled the sensitivity of our detector to temperature changes, considering its spectral sensitivity (see figure \ref{fig:BBR:NuvuQESpectra}), and the black body radiation spectra (\ref{fig:BBRtheo1:A}.). \par
+Our detector is indeed sensitive to temperature, according to the model, and in a much more drastic way that we expected.  Given a time of exposure of 600 sec, the SNR is 10 and 100 (according to our SNR model (see figure \ref{fig:SNRTau:B}) for the thermal flux given at a temperature of  23-25\textcolor{blue}{$^o$C} and 37-38\textcolor{blue}{$^o$C} respectively. The saturation of the detector happens for 58\textcolor{blue}{$^o$C} ( see figure \ref{fig:BBRtheo1:C}). The Noise Equivalent Temperature Difference (NETD) for a thermal flux given at temperatures 20\textcolor{blue}{$^o$C}, 26\textcolor{blue}{$^o$C}, 32\textcolor{blue}{$^o$C} and 37\textcolor{blue}{$^o$C} is respectively 2, 1, 0.5, 0.2 (figure \ref{fig:BBRtheo2}).\par
+It means that for a sample maintained at 37\textcolor{blue}{$^o$C}, the camera would be sensitive to  a 0.2\textcolor{blue}{$^o$C} change of temperature. It shows that the measured level of our background for a given $\tau$ is actually temperature dependent.  \par
+This very recent result raises new challenges for temperature and environment control that are for now unprecedented and was never considered in this field.
+
+==========================================
+
+==========================================
+\subsection{background measurements}
+
+All background measurements are done in the most complet dark.
+The internal shutter of the camera is maintained closed, the camera is plugged and a metallic bowl is pressed against the camera facade, sealed by a thorlabs blackout fabric (BK5) in between.
+The camera is in a light-tight black box, in which all light leaks are plugged, and itself totally recovered by two very black heavy fabrics outside, and inside by the BK5 fabric.
+The camera and the box temperature is monitored per experiment. 
+The camera temperature varies within 0.05$^o$C and the box stays below 25$^o$C at all times. Variations of the room and bow temperature doesn't impact on the camera temperature and are not correlated to any noise fluctuations to the best of our analysis (data not shown).
+
+
+\subsection{calibrated low fluxes injection}
+
+The optical setup shown in figure \subref{fig:CalibCorrel:C} is used to inject a beam of beam of calibrated low light fluxes.
+The laser used (Thorlabs HNLS008LEC, 632.8nm, 0.8mW-2mW, polarisation 500:1) passes through different elements to attenuate it before  creating an uniform infinite beam to be sent to the camera.
+Those elements are carefully cleaned before use.
+
+Dielectrical mirrors (Thorlabs, BB1-E02-10) are used  to direct the beam through the described elements.
+
+First, a shutter (Thorlabs SH1) controlled by the computer through  its controller (Thorlabs Tcube TSC00) and an Arduino, permits to cut off the beam remotely without disturbing the environment,  and to synchronize the acquisitions of the camera (internal shutter open or closed) with the presence or not of the beam. Measuring without the beam impacting the camera gives a direct measurement of the ambiant background noise.
+
+ND absorptive filters (Thorlabs NEK 01, diameter 25mm, 400-650nm) are used to limit the maximum possible flux of the laser and to keep it under the saturation of the different detectors used, protecting them from damages.
+
+A telescope 5X (Thorlabs, GBE05-A, 400-650nm) expends the beam before the fiber launch (objective Leica 4X/0.1, Achro $\infty$/0.17) which conjugates the beam to the entrance of a monomode fiber (Thorlabs 630 A FC1, NA 0.10-0.14, 633-780nm).
+
+The fiber delivers the light through a collimator (Thorlabs F810FC543, focal = 34.74mm, 543nm, NA 0.26) to produces an infinite beam in an optical tube (Thorlabs SM1 tubes).
+
+The beam will be finely attenuated by three  polarizers (Thorlabs, LPVISE100A, $\varepsilon >$5000:1 at 535-690nm). 
+The first and last ones are fixed parallely , while the middle one is mounted on a motorized mount (Thorlabs KPRM1E/M and KDC101 K-Cube DC Servo Motor Controller), controlled by a computer.
+The angle is chosen to obtain a defined output flux.
+
+The attenuated light beam exit the tube by a second collimator that connect to a monomode fiber (Thorlabs 630 A FC1, NA 0.10-0.14, 633-780nm).
+
+The fiber is connected on the other hand to a tube containing fixed optical elements in serie in a thorlab SM1 tube : a convergent lens (Thorlabs, LA1422A, plano convex, focale = 150mm) is placed at a focal distance to put the beam to infinity. 
+With  an diaphragm (Thorlabs, SM1D12C), we only select a 7mm diameter central zone of the infinite attenuated beam to have a better average flux uniformity throughout the beam section.
+The thorlab SM1 tube is fixed on the camera via c-mount and the beam centered on the sensor for acquisition.
+
+We control in real time the fluctuation of the laser by putting a cover slip that reflect a 7$\%$ fraction of the initial beam and detected by a powermeter (PM200, detection head : S120C, 400-1100nm, 50nW-50mW).
+The measured variability of the laser throughout the experiment is 2$\%$ (1.38 $\pm$ 0.03mW)
+
+The output flux of the fiber is also controlled before the injection to the NüVü camera with a photomultiplier (Picoquant PMA hybrid, model 40, 3mm diameter detector, Id $<$ 700cps) with a counter (Stanford Research Systems, SR620). For the control we use another ND filter adapted to the performance and saturation of the PMA.
+For this control, a lens (Thorlabs, LA1951-A,  plano convex, focale = 25.4mm) is used to focus all the light emitted out of the fiber to the PMA detector, under the protection of an iris when the PMA is not used.
+
+For each acquisition, we use a signal/camera background subtraction strategy, and the internal shutter of the camera is closed for one image over two. 
+To control the environment background, we also closed the shutter in the optical setup to cut the beam, for each flux condition, while acquiring.
+We controlled the environment and camera background per acquisition and its evolution (data not shown) and then subtracted the signal to the camera background throughout the experiments, and furthermore the environment background corresponding to each acquisition to the previous corrected signal.
+Another control is added by comparing through mask analysis (python) the beam illuminated area of the detector compared to the non illuminated area for laser ON and OFF condition for each flux (data not shown). 
+This gives additional information on eventual fluctuations of the detector and environmental background in real time, before subtracting the background to the signal.
+
+
+The light injection were done as fellowing (one measure corresponds to a sequence of two images shutter open and closed), with 160 seconds of exposure time : 
+\begin{itemize}
+	\item  4050 ph.cm$^{-2}$.s$^{-1}$, 5 measures laser ON, 5 measures laser OFF
+	\item  4.05 ph.cm$^{-2}$.s$^{-1}$, 60 measures laser ON, 45 measures laser OFF
+	\item  405 ph.cm$^{-2}$.s$^{-1}$, 5 measures laser ON, 5 measures laser OFF
+	\item  40.5 ph.cm$^{-2}$.s$^{-1}$, 5 measures laser ON, 5 measures laser OFF
+	\item  0.48 ph.cm$^{-2}$.s$^{-1}$, 90 measures laser ON, 90 measures laser OFF
+\end{itemize}
+
+
+
+
+==========================================
+
+==========================================
+
+\subsection{background measurements}
+
+All background measurements are done in the most complet dark.
+The internal shutter of the camera is maintained closed, the camera is plugged and a metallic bowl is pressed against the camera facade, sealed by a thorlabs blackout fabric (BK5) in between.
+The camera is in a light-tight black box, in which all light leaks are plugged, and itself totally recovered by two very black heavy fabrics outside, and inside by the BK5 fabric.
+The camera and the box temperature is monitored per experiment. 
+The camera temperature varies within 0.05$^o$C and the box stays below 25$^o$C at all times. Variations of the room and bow temperature doesn't impact on the camera temperature and are not correlated to any noise fluctuations to the best of our analysis (data not shown).
+
+
+\subsection{calibrated low fluxes injection}
+
+The optical setup shown in figure \subref{fig:CalibCorrel:C} is used to inject a beam of beam of calibrated low light fluxes.
+The laser used (Thorlabs HNLS008LEC, 632.8nm, 0.8mW-2mW, polarisation 500:1) passes through different elements to attenuate it before  creating an uniform infinite beam to be sent to the camera.
+Those elements are carefully cleaned before use.
+
+Dielectrical mirrors (Thorlabs, BB1-E02-10) are used  to direct the beam through the described elements.
+
+First, a shutter (Thorlabs SH1) controlled by the computer through  its controller (Thorlabs Tcube TSC00) and an Arduino, permits to cut off the beam remotely without disturbing the environment,  and to synchronize the acquisitions of the camera (internal shutter open or closed) with the presence or not of the beam. Measuring without the beam impacting the camera gives a direct measurement of the ambiant background noise.
+
+ND absorptive filters (Thorlabs NEK 01, diameter 25mm, 400-650nm) are used to limit the maximum possible flux of the laser and to keep it under the saturation of the different detectors used, protecting them from damages.
+
+A telescope 5X (Thorlabs, GBE05-A, 400-650nm) expends the beam before the fiber launch (objective Leica 4X/0.1, Achro $\infty$/0.17) which conjugates the beam to the entrance of a monomode fiber (Thorlabs 630 A FC1, NA 0.10-0.14, 633-780nm).
+
+The fiber delivers the light through a collimator (Thorlabs F810FC543, focal = 34.74mm, 543nm, NA 0.26) to produces an infinite beam in an optical tube (Thorlabs SM1 tubes).
+
+The beam will be finely attenuated by three  polarizers (Thorlabs, LPVISE100A, $\varepsilon >$5000:1 at 535-690nm). 
+The first and last ones are fixed parallely , while the middle one is mounted on a motorized mount (Thorlabs KPRM1E/M and KDC101 K-Cube DC Servo Motor Controller), controlled by a computer.
+The angle is chosen to obtain a defined output flux.
+
+The attenuated light beam exit the tube by a second collimator that connect to a monomode fiber (Thorlabs 630 A FC1, NA 0.10-0.14, 633-780nm).
+
+The fiber is connected on the other hand to a tube containing fixed optical elements in serie in a thorlab SM1 tube : a convergent lens (Thorlabs, LA1422A, plano convex, focale = 150mm) is placed at a focal distance to put the beam to infinity. 
+With  an diaphragm (Thorlabs, SM1D12C), we only select a 7mm diameter central zone of the infinite attenuated beam to have a better average flux uniformity throughout the beam section.
+The thorlab SM1 tube is fixed on the camera via c-mount and the beam centered on the sensor for acquisition.
+
+We control in real time the fluctuation of the laser by putting a cover slip that reflect a 7$\%$ fraction of the initial beam and detected by a powermeter (PM200, detection head : S120C, 400-1100nm, 50nW-50mW).
+The measured variability of the laser throughout the experiment is 2$\%$ (1.38 $\pm$ 0.03mW)
+
+The output flux of the fiber is also controlled before the injection to the NüVü camera with a photomultiplier (Picoquant PMA hybrid, model 40, 3mm diameter detector, Id $<$ 700cps) with a counter (Stanford Research Systems, SR620). For the control we use another ND filter adapted to the performance and saturation of the PMA.
+For this control, a lens (Thorlabs, LA1951-A,  plano convex, focale = 25.4mm) is used to focus all the light emitted out of the fiber to the PMA detector, under the protection of an iris when the PMA is not used.
+
+For each acquisition, we use a signal/camera background subtraction strategy, and the internal shutter of the camera is closed for one image over two. 
+To control the environment background, we also closed the shutter in the optical setup to cut the beam, for each flux condition, while acquiring.
+We controlled the environment and camera background per acquisition and its evolution (data not shown) and then subtracted the signal to the camera background throughout the experiments, and furthermore the environment background corresponding to each acquisition to the previous corrected signal.
+Another control is added by comparing through mask analysis (python) the beam illuminated area of the detector compared to the non illuminated area for laser ON and OFF condition for each flux (data not shown). 
+This gives additional information on eventual fluctuations of the detector and environmental background in real time, before subtracting the background to the signal.
+
+
+The light injection were done as fellowing (one measure corresponds to a sequence of two images shutter open and closed), with 160 seconds of exposure time : 
+\begin{itemize}
+	\item  4050 ph.cm$^{-2}$.s$^{-1}$, 5 measures laser ON, 5 measures laser OFF
+	\item  4.05 ph.cm$^{-2}$.s$^{-1}$, 60 measures laser ON, 45 measures laser OFF
+	\item  405 ph.cm$^{-2}$.s$^{-1}$, 5 measures laser ON, 5 measures laser OFF
+	\item  40.5 ph.cm$^{-2}$.s$^{-1}$, 5 measures laser ON, 5 measures laser OFF
+	\item  0.48 ph.cm$^{-2}$.s$^{-1}$, 90 measures laser ON, 90 measures laser OFF
+\end{itemize}
+
+
+
+==========================================
+
+==========================================
+
+
+\end{document}
+
+
+
+
+

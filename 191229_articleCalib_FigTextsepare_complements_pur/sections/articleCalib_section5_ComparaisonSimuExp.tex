@@ -1,0 +1,9 @@
+%!TEX root = ../ArticleCalib_main.tex
+
+%%%%%%% SIMULATION article calib
+\section{Simulation results and SNR}
+
+The simulation of the camera shows the expected total number of counts on the detector N1 and its variance  under different uniform and constant light fluxes. The signal is competing with the dark current when the exposure time increases, hence the incident light flux is expressed by a fraction $\epsilon $ of the dark current flux equivalent. When the time of exposure increases, the N1 mean reaches a maximum (ie. the total number of functional pixels : 512$\times$512) (\ref{fig:SimuMeanVarN1:A}) and the N1 variance increases and then collapses to stabilise at a minimum (\ref{fig:SimuMeanVarN1:B}). \par
+
+Because of the dynamics linked to the saturation, the SNR presents a maximum, before diminishing with the exposure time.
+For fluxes that exceed $I_{d}$ flux equivalent, a "bump" appears at the top of SNR curves : when approaching saturation, i.e. when the Bernoulli probability approaches $1$, the distribution is somehow "compressed", and the variance decreases while the mean still increases(\ref{fig:SNRTau:A}.)

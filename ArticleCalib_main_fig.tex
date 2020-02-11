@@ -1,0 +1,57 @@
+%% Classe du document
+\documentclass{article}
+%\documentclass[]{report}
+
+\usepackage{preambule_all181211}
+
+\graphicspath{{figures/}{../figures/}}
+
+\begin{document}
+\maketitle
+
+%%%%%% INTRO
+	%\input{sections/articleCalib_section1_Intro.tex}
+	
+%%%%%% CAMERA PRESENTATION
+	%\input{sections/articleCalib_section2_CameraPresentation.tex}
+	
+%%%%%% DETECTOR STATISTICAL MODEL
+	%\input{sections/articleCalib_section3_ModelStat.tex}
+	
+%%%%%% CARACTERISATION OF SINGLE PIX RESPONSE
+	%\input{sections/articleCalib_section4_SinglePixResponse.tex}
+		\input{figures/ArticleCalib_Fig1_caractSinglePixresponse}
+		\input{figures/articleCalib_fig1supp_caract_LinesColResponse.tex}
+		\input{figures/articleCalib_Fig2_Poisson}
+	
+%%%%%% SIMULATION RESULTS
+	%\input{sections/articleCalib_section5_ComparaisonSimuExp.tex}	
+		\input{figures/articleCalib_Fig3_model_fit}
+	
+%%%%%% CONSTANT, UNIFORM FLUX MEASUREMENT STRATEGY
+	%\input{sections/articleCalib_section6_SNRandStrategy}	
+		\input{figures/articleCalib_fig4_model_segmentation}
+		
+%%%%%% FLUCTUATING FLUX MEASUREMENT ?
+	%\input{sections/articleCalib_section7_FluctuatingFlux}					
+		
+%%%%%% PRACTICALLY
+	%\input{sections/articleCalib_section8_Practically}	
+		\input{figures/articleCalib_fig5_model_HeteroHomo}
+		\input{figures/articleCalib_Fig6_CR}	
+		\input{figures/articleCalib_fig7_8_BBRtheocalibration}
+		\input{figures/articleCalib_fig9_BBRtheocalibrationExp}
+		
+%%%%%% EXPERIMENTAL RESULTS
+	%\input{sections/articleCalib_section01_MM_laserCalib.tex}
+
+	%\input{sections/articleCalib_section9_calibLaser.tex}
+		\input{figures/articleCalib_fig14_doublementStoch.tex}
+		\input{figures/articleCalib_fig10_CalibExperimentale.tex}
+		
+
+
+\end{document}
+
+
+

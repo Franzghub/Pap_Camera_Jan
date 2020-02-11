@@ -1,0 +1,43 @@
+%!TEX root = ../ArticleCalib_main.tex
+
+%%%%%%% CONSTANT, UNIFORM FLUX MEASUREMENT STRATEGY article calib
+\section{Constant, Uniform light flux measurement strategy}
+
+The SNR per frame presenting a maximum suggests an existing optimal strategy, ie an optimal time of exposure, for a given light flux intensity, under the conditions of acquisition described - gain 3000, PC mode, -85°c chilling. \par
+
+Using a SNR contour representation permits a graphical approach to predict our single frame detection capacity, of a given light flux, for a given exposure time  (\ref{fig:SNRTau:B}). For exemple, with 40 photons/cm$^2$/sec (Id equivalent), the SNR equal 1, for one acquisition of 1 second exposure time.\par
+\medskip
+
+
+Going further, on the figure \ref{fig:SNRTau:A}}, we observe two main SNR regimes that can be defined as a function of their logarithmic slope. One fellows a logarithmic slope of 1 ("regime 1"), and the other  fellows a logarithmic slope of $1/2$ ("regime $1/2$"). \par
+
+Hence, the fellowing question : should we repeat the same acquisition K times during the total experimentation time t, or should we fix $t = \tau$ if $t < \tau_{SNR max}$ ?
+Studying those SNR regimes will helps us to answer this question.\par
+
+Indeed, the SNR increases with the number of repetition of acquisitions K in the same experimental conditions, given that the standard error of the mean (SEM) decreases with $\sqrt{K}$, and with the time of exposure $\tau$, until it reaches the time for which the SNR is maximal $\tau_{SNR max}$.
+In the "regime 1", the SNR increases proportionally to $\tau$ and to $\sqrt{K}$, while in the "regime $1/2$", the SNR increases proportionally to $\sqrt{\tau}$ and to $\sqrt{K}$.
+Therefore, considering one flux intensity $\phi$ and time of exposure $\tau$, in "regime 1", the SNR increases faster with $\tau$ than with K, whereas in "regime $1/2$", the SNR increases indifferently  with $\tau$ and with K.\par
+
+Those regimes are better viewed with the logarithmic derivative $\delta logSNR / \delta log\tau$ representation (\ref{fig:SNRTau:C}).
+Here, we noticed that there is only one precise $\tau$ for which the logarithmic derivative of the SNR takes the value $1/2$, and this $\tau$ stands for the "regime $1/2$".
+Below this time of exposure, increasing the $\tau$ increases the SNR faster than increasing K ; above it, increasing the K increases the SNR faster than increasing  $\tau$. But, repeating an acquisition at the precise time of exposure where $\delta logSNR / \delta log\tau = 1/2$ brings the maximum increasing rate of the SNR once passed the "regime 1".
+Therefore we called this new characteristic time of exposure the  $\tau$ of maximal density information ($\tau_{max \hspace{3} info}$).\par
+\medskip
+
+
+From this analysis, two characteristic exposure times are extracted : $\tau_{SNR max}$ gives the maximum SNR for one frame, and the $\tau_{max \hspace{3} info}$ gives the best information density when repeated, both dependant on known or predicted incident light fluxes.
+In practice, for a long detection of a flux intensity near the dark current level, an repeated exposure time around $500-600$ sec is best, while for an inferior flux intensity, the ideal repeated exposure time is slightly higher, around $700-800$ sec.
+This deep study gives us a great tool to use our detector at its best, but also to predict our detection capacity for one uniform, constant light flux emitting source or sample (\ref{fig:SNRTau:D}.)\par   
+
+However other kind of unpredicted fluctuations can impair the model (\ref{fig:SimuMeanVarN1:B} shows N1 variance excess). Thus, improving experimentally the SNR by a better light collection, and having a \textit{in situ} control with imaging, is also fondamental in ultra weak light flux detection.  
+
+
+
+
+
+
+
+
+
+
+ (\ref{fig:SNRTau:B}). 

@@ -1,0 +1,36 @@
+%!TEX root = ../ArticleCalib_main.tex
+
+%%%%%%% MODEL STAT article calib
+\section{Statistical model}
+
+A SNR model was built to evaluate the sensitivity to detect a uniform light flux impinging on the detector. To this end, the measured observable is simply the total number of counts on the detector N1, i.e. the number of pixels that light up. 
+It amounts to using the whole detector surface as a single big pixel, and provides us with an outstanding sensitivity.\par
+ 
+As the detector is operated in the photon-counting (PC) mode, the output of each pixel, 0 and 1, is a simple Bernoulli random variable, $X_{pixel}$, if considering independent repetitions over time.
+Each pixel having its own CIC and I$_{dark}$, the probability to light up can be broken into the probability to deliver a CIC count $p(X_{}=1)$ or a dark count $p(X_{dark}=1)$.  A simple reasoning leads to : 
+
+\medskip
+\centerline{$p(X_{pixel}=1) = 1- p(X_{pixel}=0)= 1-  p(X_{CIC}=0)*p(X_{dark}=0)$}
+\medskip
+ 
+$X_{CIC}$ is considered as a simple stationery Bernoulli variable, and $X_{dark}$ as a Bernoulli variable depending on the exposure time.
+More precisely, the dark count during a given exposure time is assumed to be poissonian, from which $X_{dark}$, which is binary, is truncated. As a consequence :  
+
+\medskip
+\centerline{$p(X_{pixel}=0) = (1-p_{CIC}) * e^{- \lambda \tau}$}
+\medskip
+ 
+where $\lambda$ is the frequency of counts as a result of the additive effect of the dark current and the light flux  $\phi = \phi_{I_{dark}} + \phi_{signal} $.
+Since this is a Bernoulli variable, the variance is :
+
+\medskip
+\centerline{ $\sigma^2_{Id+CIC} = P_{Id+CIC} * (1-P_{Id+CIC})$ }
+\medskip
+ 
+and the SNR reads :
+
+\medskip
+\centerline{$SNR = \frac{\Delta_{(signal+noise)-noise}}{\sqrt{\sigma^2_{signal+noise}+\sigma^2_{noise}}}$}
+\bigskip
+
+The SNR for the sum of all pixels N1 is represented as a of function of the time of exposure for different values of $\epsilon = \phi_{signal}/\phi_{I_{d}}$, ratio of the signal flux over the equivalent dark flux.
